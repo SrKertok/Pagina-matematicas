@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Distancia a Satélites</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+    <h1>Calculadora de Distancia a Satélites</h1>
+    <div class="container">
+        <p>Ingresa los valores de tiempo para calcular la distancia.</p>
+
+        <label for="t1">Tiempo de envío de la señal (t1):</label>
+        <input type="number" id="t1" step="0.01" placeholder="Tiempo t1 en segundos">
+
+        <label for="t2">Tiempo de recepción de la señal (t2):</label>
+        <input type="number" id="t2" step="0.01" placeholder="Tiempo t2 en segundos">
+
+        <button onclick="calcularDistancia()">Calcular Distancia</button>
+
+        <p id="resultado"></p>
+    </div>
+    <div style="text-align: right;">
+    <title>Fuegos Artificiales</title>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #fireworks {
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #f00;
+            opacity: 0;
+            animation: explode 2s linear forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(5);
+                opacity: 0;
+            }
+        }
+
+        #fireworksButton {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            padding: 5px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #fireworksButton:hover {
+            background-color: #2980b9;
+        }
+    </style>
+    <button id="fireworksButton" style="text-align: center;">¡Muy Bien, 10!</button>
+    <div id="fireworks" style="text-align: right;"></div>
+    <div id="canvas-container">
+    </div>
+    <script src="js/script.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+    </script>
+    <script>
+        const fireworksContainer = document.getElementById("fireworks");
+        const fireworksButton = document.getElementById("fireworksButton");
+
+        fireworksButton.addEventListener("click", () => {
+            createFireworks();
+        });
+
+        function createFireworks() {
+            const colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"];
+            
+            for (let i = 0; i < 10; i++) {
+                const firework = document.createElement("div");
+                firework.className = "firework";
+                firework.style.left = Math.random() * window.innerWidth + "px";
+                firework.style.top = Math.random() * window.innerHeight + "px";
+                firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                fireworksContainer.appendChild(firework);
+            }
+
+            setTimeout(() => {
+                fireworksContainer.innerHTML = "";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
+
+
